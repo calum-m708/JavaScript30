@@ -1,46 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <script>
+      const dogs = [
+        { name: 'Snickers', age: 2 },
+        { name: 'hugo', age: 8 }
+      ];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      function makeGreen() {
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
+      }
 
-    function makeGreen() {
+      // Regular
+      console.log('Log');
+      // Interpolated
+      console.log('Interpolating like a %s Ninja', '🐱‍👤');
+      // Styled
+      console.log('%c Stylish Text', 'text-shadow: 0.5px 0.5px 0 blue');
+
+      // warning!
+      console.warn('Danger, Danger');
+
+      // Error :|
+      console.error('bleep bop, it broke');
+      // Info
+      console.info('Crocodiles eat 3-4 people per year');
+      // Testing
+      console.assert(1 === 2, 'Bzzt, wrongo');
+      // clearing
+      console.clear();
+      // Viewing DOM Elements
       const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+      console.log(p);
+      console.dir(p);
+      console.clear();
+      // Grouping together
+      dogs.forEach((dog) => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.groupEnd(`${dog.name}`);
+      });
+      // counting
 
-    // Regular
+      console.count('Wes');
+      console.count('Wes');
+      console.count('Wes');
+      console.count('Wes');
+      console.count('Wes');
 
-    // Interpolated
+      // timing
+      console.time('fetching data');
+      fetch('https://api.github.com/users/calum-m708').then((data) =>
+        data.json().then((data) => {
+          console.timeEnd('fetching data');
+          console.log(data);
+        })
+      );
 
-    // Styled
-
-    // warning!
-
-    // Error :|
-
-    // Info
-
-    // Testing
-
-    // clearing
-
-    // Viewing DOM Elements
-
-    // Grouping together
-
-    // counting
-
-    // timing
-
-  </script>
-</body>
+      console.table(dogs);
+    </script>
+  </body>
 </html>
